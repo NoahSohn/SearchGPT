@@ -28,6 +28,6 @@ void crawl(const std::string& file)
     for (auto link : parsed_data.links)
     {
         if (std::filesystem::exists(std::string("crawled/" + link) + ".crawltxt")) continue;
-        crawl("crawled/" + link);
+        crawl(link);
     }
 }
