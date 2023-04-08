@@ -8,48 +8,41 @@ std::string parse_text(const std::string& parse, size_t location, const char* en
 
 parsed_page parse(const std::string& file)
 {
-    std::cout << "here" << std::endl;
     std::vector<size_t> all_h1_occurences;
     for (size_t i = 0; ; )
     {
         i = file.find("<h1>", i);
+        if (i == std::string::npos || i > file.size()) break;
         i += 4;
         all_h1_occurences.push_back(i);
-        if (i == std::string::npos || i < file.size()) break;
     }
-    std::cout << "after loop" << std::endl;
 
     std::vector<size_t> all_h2_occurences;
     for (size_t i = 0; ; )
     {
         i = file.find("<h2>", i);
+        if (i == std::string::npos || i > file.size()) break;
         i += 4;
         all_h2_occurences.push_back(i);
-        if (i == std::string::npos || i < file.size()) break;
     }
 
     std::vector<size_t> all_p_occurences;
     for (size_t i = 0; ; )
     {
         i = file.find("<p>", i);
+        if (i == std::string::npos || i > file.size()) break;
         i += 3;
         all_p_occurences.push_back(i);
-        if (i == std::string::npos || i < file.size()) break;
     }
 
     std::vector<size_t> all_href_occurences;
     for (size_t i = 0; ; )
     {
         i = file.find("<a href=\"", i);
+        if (i == std::string::npos || i > file.size()) break;
         i += 9;
         all_href_occurences.push_back(i);
-        if (i == std::string::npos || i < file.size()) break;
     }
-
-    if (all_h1_occurences.back() == 3) all_h1_occurences.pop_back();
-    if (all_h2_occurences.back() == 3) all_h2_occurences.pop_back();
-    if (all_p_occurences.back() == 2) all_p_occurences.pop_back();
-    if (all_href_occurences.back() == 8) all_href_occurences.pop_back();
 
     parsed_page rval;
 
@@ -81,7 +74,7 @@ parsed_page parse(const std::string& file)
         std::string output = file.substr(x, end_st - x);
         rval.links.push_back(output);
     }
-
+    
     return rval;
 }
 
@@ -98,6 +91,7 @@ std::string parse_text(const std::string& parse, size_t location, const char* en
             for (; ; i++)
             {
                 if (greater_ct == 0) break;
+                if (i > check_for_greater.size()) break;
                 if (check_for_greater[i] == '<') greater_ct++;
                 if (check_for_greater[i] == '>') greater_ct--;
             }

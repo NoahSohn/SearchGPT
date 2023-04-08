@@ -23,11 +23,11 @@ void crawl(const std::string& file)
         begin.append("\n");
     }
     begin.push_back('\n');
-    write_file(std::string("crawled/" + file) + ".crawltxt", begin);
+    write_file(std::string("crawled/" + file) + ".crawltxt", begin);\
 
     for (auto link : parsed_data.links)
     {
         if (std::filesystem::exists(std::string("crawled/" + link) + ".crawltxt")) continue;
-        crawl("crawled/" + link);
+        crawl(link);
     }
 }
