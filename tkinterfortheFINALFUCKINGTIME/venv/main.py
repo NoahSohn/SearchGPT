@@ -14,6 +14,10 @@ with open("resources/database.txt", "r") as file:
 
 print(resources)
 resources = resources.split(",")
+for x in range(0, len(resources)):
+    if resources[x-1] == "":
+        print(resources[x-1])
+        del resources[x-1]
 print(resources)
 
 
