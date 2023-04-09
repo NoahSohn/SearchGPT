@@ -1,4 +1,5 @@
 # SearchGPT
+![A screenshot of SearchGPT in action](Screenshot.png "SearchGPT")
 ## Inspiration
 With the unstoppable rise of AI, it is only a matter of time before another, more elegant search option will emerge. We want to be ahead of the curve with a focus on convenience and accuracy, what people expect from a search engine.
 ## What it does
