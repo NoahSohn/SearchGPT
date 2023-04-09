@@ -63,7 +63,7 @@ def askai():
 
     aioutput.configure(state=tk.NORMAL)
     aioutput.delete("1.0", "end")
-    aioutput.insert(tk.END, "Ai Summary: " + aisummary)
+    aioutput.insert(tk.END, "Response: " + aisummary)
     aioutput.configure(state=tk.DISABLED)
 
     sourcesoutput.configure(state=tk.NORMAL)
