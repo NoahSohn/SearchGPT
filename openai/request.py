@@ -1,7 +1,14 @@
 import openai
 
+import os
+
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
 # Set up the OpenAI API client
-openai.api_key = "not available here"
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 #Ask for user query
 query = input("Enter your query: ")

@@ -1,6 +1,8 @@
 #Stupid Mac stuff
 .DS_Store
 
+#.env file
+/openai/.env
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
