@@ -1,7 +1,7 @@
 import openai
 
 # Set up the OpenAI API client
-openai.api_key = "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"
+openai.api_key = "not available here"
 
 #Ask for user query
 query = input("Enter your query: ")
