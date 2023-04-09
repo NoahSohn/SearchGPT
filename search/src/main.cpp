@@ -6,7 +6,7 @@
 
 int main(void)
 {
-    crawl("1.html");
+    crawl("dolphins.html");
 
     std::vector<std::string> webpg_list = gen_webpg_list();
     std::vector<double> pr(webpg_list.size(), 0);
