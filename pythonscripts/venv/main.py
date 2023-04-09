@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import request as r
-
+import search as s
 bgc = "#1e2024"
 fgc = "#d5e9f2"
 root = tk.Tk()
@@ -13,18 +13,60 @@ aisummary = ""
 font = "Calibri"
 sources = ["wikipedia", "thehub", "youtube", "qoura"]
 
-def search():
-    global aisummary
+s.init_datasets()
+airesults = ["","",""]
+searchresults = {}
+searchquery = ""
+maxvalue = 0
+maxkey = ""
+
+def askai():
+    global aisummary,maxkey,maxvalue,searchquery,searchresults
     proooopmt = textentry.get()
     if proooopmt == "":
         return 0
-    print(proooopmt)
-    aisummary = r.askopenai(proooopmt)
+    airesults[1] = r.askopenai(proooopmt)
     print(aisummary)
+    searchquery = r.askopenai("Turn this into a query intended for a search engine:"+str(proooopmt))
+    print(searchquery)
+    searchresults = s.search(searchquery)
+    print(searchresults)
+
+    maxvalue = max(searchresults.values())
+    maxkey = max(searchresults,key=searchresults.get)
+    print("searched webpage")
+    print(maxkey)
+    print(maxvalue)
+
+    sources = searchresults.keys()
+    print(sources)
+
+
+    with open("datasets/"+maxkey+".crawltxt","r") as f:
+        file = f.read()
+
+    file = file.split("<links>", 1)[0]
+    print(file)
+
+    aisummary = r.askopenai("answer this proompt with the following conetext: "+proooopmt+file)
+
     aioutput.configure(state=tk.NORMAL)
     aioutput.delete("1.0", "end")
     aioutput.insert(tk.END, "Ai Summary: " + aisummary)
     aioutput.configure(state=tk.DISABLED)
+
+    sourcesoutput.configure(state=tk.NORMAL)
+    sourcesoutput.delete("1.0", "end")
+    sourcesoutput.insert(tk.END, "Sources " + str(sources))
+    sourcesoutput.configure(state=tk.DISABLED)
+
+    evaluationlabel.configure(text="Evaluated "+str(len(sources))+" Sources")
+    #for key in results:
+       # results[key]
+
+
+    #f = open("datasets/" + imaginaryKey + ".crawltxt")
+
 
 
 titleframe = tk.Frame(root, bg=bgc, bd=2, relief="groove", height=60)
@@ -41,7 +83,7 @@ entryframe = tk.Frame(root, bg=bgc, bd=2, relief="groove", height=60)
 textboxlabel = tk.Label(entryframe, text="Enter Search Query", bg=bgc, fg=fgc, font=(font, 12))
 evaluationlabel = tk.Label(entryframe, text="Evaluated "+str(len(sources))+" Sources", bg=bgc, fg=fgc, font=(font, 8))
 textentry = tk.Entry(entryframe, bg="#a6b4ba")
-entrybutton = tk.Button(entryframe, text="Search", command=search)
+entrybutton = tk.Button(entryframe, text="Search", command=askai)
 
 entryframe.pack(fill="both", padx=5, pady=10)
 textboxlabel.place(x=30, rely=0.2)
@@ -62,11 +104,12 @@ aioutput.configure(state=tk.DISABLED)
 sourceoverviewframe = tk.Frame(root, bg=bgc, bd=2, relief="groove",)
 sourceoverviewframe.pack(fill="both", padx=5, pady=10)
 sourceall = tk.Label(sourceoverviewframe, text="sources", bg=bgc, fg=fgc, font=(font, 12))
-for x in range(0, len(sources)):
-    sourceframe = tk.Frame(sourceoverviewframe, bg=bgc, bd=2, relief="groove",)
-    sourcetitle = tk.Label(sourceoverviewframe, text=str(x)+". "+sources[x], bg=bgc, fg=fgc, font=(font, 12))
-    sourceframe.pack(fill="both", padx=5, pady=10)
-    sourcetitle.pack()
+sourcesoutput = tk.Text(sourceoverviewframe, bg=bgc, fg=fgc, font=(font, 12), height=5)
+
+sourcesoutput.pack(fill=tk.BOTH, expand=True, padx=10, pady=10,)
+sourcesoutput.configure(state=tk.NORMAL)
+sourcesoutput.insert(tk.END, "Sources: "+str(sources))
+sourcesoutput.configure(state=tk.DISABLED)
 
 
 root.mainloop()

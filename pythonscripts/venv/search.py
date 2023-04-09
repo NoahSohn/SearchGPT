@@ -65,4 +65,5 @@ def search(query):
         total_vals_names[key] = total_val
 
     print(total_vals_names)
+    return total_vals_names
 
