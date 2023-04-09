@@ -16,7 +16,7 @@ model_engine = "text-davinci-003"
 
 #Ask for user query
 def askopenai(query):
-    prompt = "Turn this into a query intended for a search engine: {}".format(str(query))
+    prompt = str(query)
     # Generate a response
     Completion = openai.Completion.create(
         engine=model_engine,
@@ -29,3 +29,4 @@ def askopenai(query):
 
     response = Completion.choices[0].text
     return response
+
