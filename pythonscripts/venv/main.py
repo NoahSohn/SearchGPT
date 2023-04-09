@@ -9,22 +9,9 @@ root = tk.Tk()
 root.title("SearchGPT")
 root.configure(bg=bgc)
 
-with open("resources/database.txt", "r") as file:
-    resources = file.read()
-
-print(resources)
-resources = resources.split(",")
-for x in range(0, len(resources)):
-    if resources[x-1] == "":
-        print(resources[x-1])
-        del resources[x-1]
-print(resources)
-
-
 aisummary = ""
 font = "Calibri"
 sources = ["wikipedia", "thehub", "youtube", "qoura"]
-numsources = len(sources)
 
 def search():
     global aisummary
@@ -42,7 +29,7 @@ def search():
 
 titleframe = tk.Frame(root, bg=bgc, bd=2, relief="groove", height=60)
 title = tk.Label(titleframe, text="SearchGPT", bg=bgc, fg=fgc, font=(font, 24))
-logoimage = tk.PhotoImage(file="logotk.png",)
+logoimage = tk.PhotoImage(file="logotk.png", )
 logoimage = logoimage.subsample(20)
 logo = tk.Label(titleframe, image=logoimage, width=50, height=50, bg=bgc)
 
