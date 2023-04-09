@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk
-import funcs as f
 import request as r
 
 bgc = "#1e2024"
@@ -10,8 +9,15 @@ root = tk.Tk()
 root.title("SearchGPT")
 root.configure(bg=bgc)
 
+with open("resources/database.txt", "r") as file:
+    resources = file.read()
 
-aisummary = "asdfghijluasdfgghilnasfgiluhasfgh"
+print(resources)
+resources = resources.split(",")
+print(resources)
+
+
+aisummary = ""
 font = "Calibri"
 sources = ["wikipedia", "thehub", "youtube", "qoura"]
 numsources = len(sources)
@@ -23,6 +29,7 @@ def search():
         return 0
     print(proooopmt)
     aisummary = r.askopenai(proooopmt)
+    print(aisummary)
     aioutput.configure(state=tk.NORMAL)
     aioutput.delete("1.0", "end")
     aioutput.insert(tk.END, "Ai Summary: " + aisummary)
