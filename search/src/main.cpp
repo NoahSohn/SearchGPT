@@ -1,8 +1,12 @@
 #include <iostream>
 
-#include "crawler/crawler.h"
+#include "pagerank/pagerank.h"
 
 int main(void)
 {
-    crawl("1.html");
+    auto x = pagerank();
+    // for (auto y : x)
+    // {
+    //     std::cout << "PR" << y << std::endl;
+    // }
 }
