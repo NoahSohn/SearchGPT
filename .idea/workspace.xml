@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="08c8df72-9141-4e42-b378-933f0b923cc3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/mainpython/venv/idf.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mainpython/venv/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mainpython/venv/request.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/venv/idf.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/venv/logotk.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/venv/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/venv/request.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/venv/wikipedia_summarize.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pythonscripts/venv/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/pythonscripts/venv/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +41,7 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/Esohn/Documents/GitHub/LosAltosHacksVII/gui/venv/main.py"
+    "last_opened_file_path": "C:/Users/Esohn/Documents/GitHub/LosAltosHacksVII/pythonscripts/venv/main.py"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -47,6 +50,8 @@
       <recent name="C:\Users\Esohn\Documents\GitHub\LosAltosHacksVII\tkinterfortheFINALFUCKINGTIME\venv" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Esohn\Documents\GitHub\LosAltosHacksVII\pythonscripts\venv" />
+      <recent name="C:\Users\Esohn\Documents\GitHub\LosAltosHacksVII\gui\venv\Scripts" />
       <recent name="C:\Users\Esohn\Documents\GitHub\LosAltosHacksVII\mainpython\venv\Scripts" />
       <recent name="C:\Users\Esohn\Documents\GitHub\LosAltosHacksVII\tkinterfortheFINALFUCKINGTIME\venv" />
     </key>
@@ -59,12 +64,12 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\Esohn\Documents\GitHub\LosAltosHacksVII\mainpython\venv\Scripts\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/gui/venv" />
+      <option name="SDK_HOME" value="C:\Users\Esohn\Documents\GitHub\LosAltosHacksVII\pythonscripts\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pythonscripts/venv" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gui/venv/main.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pythonscripts/venv/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
