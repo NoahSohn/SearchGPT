@@ -21,7 +21,7 @@ def askopenai(query):
     Completion = openai.Completion.create(
         engine=model_engine,
         prompt=prompt,
-        max_tokens=1024,
+        max_tokens=3090,
         n=1,
         stop=None,
         temperature=0.5,

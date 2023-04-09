@@ -51,7 +51,9 @@ def search(query):
         if csv.count(q_list[i]) == 0:
             new_list.append(q_list[i])
 
-    total_vals_names = dict()
+    print(new_list)
+
+    total_vals_names = {}
 
     for key in tf_per_file:
         total_val = float(0)

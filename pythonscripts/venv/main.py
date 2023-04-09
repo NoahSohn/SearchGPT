@@ -27,20 +27,21 @@ def askai():
         return 0
     airesults[1] = r.askopenai(proooopmt)
     print(aisummary)
-    searchquery = r.askopenai("Turn this into a query intended for a search engine:"+str(proooopmt))
-    print(searchquery)
-    searchresults = s.search(searchquery)
+    # searchquery = r.askopenai("Turn this into a query intended for a search engine:"+str(proooopmt))
+    # print(searchquery)
+    searchresults = s.search(proooopmt)
     print(searchresults)
 
     maxvalue = max(searchresults.values())
     maxkey = max(searchresults, key=searchresults.get)
     print("searched webpage")
-    print(maxkey) 
+    print(maxkey)
     print(maxvalue)
 
     sources = searchresults.keys()
     sources = str(sources).replace("dict_keys([", "")
     sources = sources.replace("'", "")
+    sources = maxkey
     print(sources)
 
     with open("datasets/"+maxkey+".crawltxt","r") as f:
@@ -48,8 +49,13 @@ def askai():
 
     file = file.split("<links>", 1)[0]
     print(file)
+    print("here")
 
-    aisummary = r.askopenai("answer this proompt with the following conetext: "+proooopmt+file)
+    aisummary = r.askopenai("answer this proompt with the following context: "+proooopmt+file)
+
+    print("after ai summary")
+
+    print(aisummary)
 
     aioutput.configure(state=tk.NORMAL)
     aioutput.delete("1.0", "end")
@@ -62,12 +68,6 @@ def askai():
     sourcesoutput.configure(state=tk.DISABLED)
 
     evaluationlabel.configure(text="Evaluated "+str(len(sources))+" Sources")
-    #for key in results:
-       # results[key]
-
-
-    #f = open("datasets/" + imaginaryKey + ".crawltxt")
-
 
 
 titleframe = tk.Frame(root, bg=bgc, bd=2, relief="groove", height=60)
