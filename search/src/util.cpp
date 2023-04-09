@@ -41,7 +41,11 @@ std::string read_file(const std::string& filepath)
     std::ifstream file(filepath);
     std::string str;
 
-    if (!file.is_open()) throw std::runtime_error("Cannot find file");
+    if (!file.is_open()) 
+    {
+        std::cout << filepath << std::endl;
+        throw std::runtime_error("Cannot find file");
+    }
 
     file.seekg(0, std::ios::end);   
     str.reserve(file.tellg());

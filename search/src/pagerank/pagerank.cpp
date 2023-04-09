@@ -1,106 +1,87 @@
 #include "pagerank.h"
 
+#include <unordered_map>
 #include <filesystem>
-#include <string>
-#include <vector>
-#include <algorithm>
+
 #include "util.h"
+
+const double damping_factor = 0.85; // damping factor
+const int iterations = 100; // number of iterations
 
 std::vector<std::string> gen_webpg_list()
 {
-    std::vector<std::string> list_files;
-    for (const auto& entry : std::filesystem::directory_iterator("html/")) {
- 
-        // Converting the path to const char * in the
-        // subsequent lines
-        std::filesystem::path outfilename = entry.path();
-        list_files.push_back(outfilename.filename().string());
-    }
-    return list_files;
-}
+    std::vector<std::string> rval;
 
-std::unordered_map<std::pair<size_t, size_t>, bool, hash_pair> gen_adj_graph(const std::vector<std::string>& list_pages)
-{
-    std::unordered_map<std::string, size_t> reverse_list_pages;
-    for (size_t i = 0; i < list_pages.size(); i++)
+    for (const auto& entry : std::filesystem::directory_iterator("html/"))
     {
-        reverse_list_pages[list_pages[i]] = i;
-    }
-    std::unordered_map<std::pair<size_t, size_t>, bool, hash_pair> rval;
-    for (auto page : list_pages)
-    {
-        std::string page_file = read_file("crawled/" + page + ".crawltxt");
-        size_t i = page_file.find("<links>");
-        i = page_file.find("\n", i);
-        for (size_t j = i; i != std::string::npos; i = j)
-        {
-            j = page_file.find("\n", i + 1);
-            std::string link = page_file.substr(i + 1, j - i - 1);
-            if (reverse_list_pages.contains(link))
-            {
-                rval[{reverse_list_pages[page], reverse_list_pages[link]}] = 1;
-            }
-        }
+        std::filesystem::path outfilename = entry.path().filename();
+        rval.push_back(outfilename.string());
     }
 
     return rval;
 }
 
-std::vector<double> pagerank()
+std::vector<std::vector<size_t>> gen_adj_graph(const std::vector<std::string>& webpg_list)
 {
-    const double d = 0.85; // damping factor
-    const double eps = 1e-6; // convergence threshold
-
-    auto list_pages = gen_webpg_list();
-    std::unordered_map<std::string, size_t> reverse_list_pages;
-    for (size_t i = 0; i < list_pages.size(); i++)
+    std::unordered_map<std::string, size_t> rv_webpg_list;
+    for (size_t i = 0; i < webpg_list.size(); i++)
     {
-        reverse_list_pages[list_pages[i]] = i;
-    }
-    size_t num_pages = list_pages.size();
-    auto adj_matrix = gen_adj_graph(list_pages);
-    std::vector<double> pr;
-
-    // initialize PageRank values
-    for (size_t i = 0; i < num_pages; i++) 
-    {
-        pr[i] = 1.0 / num_pages;
+        rv_webpg_list[webpg_list[i]] = i;
     }
 
-    // iterate until convergence
-    while (true) 
-    {
-        double maxDiff = 0.0;
+    std::vector<std::vector<size_t>> adj_list(webpg_list.size(), std::vector<size_t>(webpg_list.size(), 0));
 
-        // calculate new PageRank values
-        std::vector<double> new_PR;
-        for (int i = 0; i < num_pages; i++) 
+    for (auto x : webpg_list)
+    {
+        std::string file = read_file("crawled/" + x + ".crawltxt");
+        size_t loc = file.find("<links>");
+        loc = file.find("\n", loc);
+        for (size_t end_loc = loc; end_loc != std::string::npos; loc = end_loc)
         {
-            for (int j = 0; j < num_pages; j++) 
+            end_loc = file.find("\n", loc + 1);
+            std::string link = file.substr(loc + 1, end_loc - loc - 1);
+            if (rv_webpg_list.contains(link)) 
             {
-                if (adj_matrix.contains({i, j})) 
+                adj_list[rv_webpg_list[x]][rv_webpg_list[link]] = 1;
+            }
+        }
+    }
+
+    return adj_list;
+}
+
+void pagerank(const std::vector<std::vector<size_t>>& adj_graph, std::vector<double>& pr)
+{
+    int n = adj_graph.size();
+
+    // initialize pagerank values to 1/n
+    for (int i = 0; i < n; i++) {
+        pr[i] = 1.0 / n;
+    }
+
+
+    // perform iterations
+    for (int k = 0; k < iterations; k++) 
+    {
+        std::vector<double> new_pr(n, 0.0);
+        for (int i = 0; i < n; i++) {
+            // Calculate parents (incoming links)
+            double prc = 0;
+            for (size_t j = 0; j < n; j++)
+            {
+                if (adj_graph[j][i] == 1)
                 {
-                    new_PR[i] += pr[j] * adj_matrix[{i,j}];
+                    size_t num_child = 0;
+                    for (size_t k = 0; k < n; k++)
+                    {
+                        if (adj_graph[j][k] == 1) num_child++;
+                    }
+
+                    prc = prc + pr[j] / num_child;
                 }
             }
-
-            new_PR[i] = d * new_PR[i] + (1 - d) / num_pages;
+            new_pr[i] = (1 - damping_factor) / n + damping_factor * prc;
         }
-
-        // calculate maximum difference
-        for (int i = 0; i < num_pages; i++) 
-        {
-            maxDiff = std::max(maxDiff, abs(pr[i] - new_PR[i]));
-        }
-
-        // update PageRank values
-        pr = new_PR;
-
-        // check convergence
-        if (maxDiff < eps) break;
+        pr = new_pr;
     }
-
-    std::cout << "here" << std::endl;
-
-    return pr;
 }
