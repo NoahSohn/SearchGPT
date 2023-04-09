@@ -20,6 +20,7 @@ searchquery = ""
 maxvalue = 0
 maxkey = ""
 
+
 def askai():
     global aisummary,maxkey,maxvalue,searchquery,searchresults,sources
     proooopmt = textentry.get()
@@ -27,8 +28,8 @@ def askai():
         return 0
     airesults[1] = r.askopenai(proooopmt)
     print(aisummary)
-    # searchquery = r.askopenai("Turn this into a query intended for a search engine:"+str(proooopmt))
-    # print(searchquery)
+    #searchquery = r.askopenai("Turn this into a query intended for a search engine:"+str(proooopmt))
+    #print(searchquery)
     searchresults = s.search(proooopmt)
     print(searchresults)
 
@@ -54,6 +55,7 @@ def askai():
     aisummary = ""
     if maxvalue < 0.001:
         aisummary = r.askopenai("generate a long answer for this" + proooopmt);
+
     else:
         aisummary = r.askopenai("generate a long answer for this "+proooopmt+file)
 
@@ -86,7 +88,7 @@ logo.place(anchor="nw")
 
 entryframe = tk.Frame(root, bg=bgc, bd=2, relief="groove", height=60)
 textboxlabel = tk.Label(entryframe, text="Enter Search Query", bg=bgc, fg=fgc, font=(font, 12))
-evaluationlabel = tk.Label(entryframe, text="Evaluated "+str(len(sources))+" Sources", bg=bgc, fg=fgc, font=(font, 8))
+evaluationlabel = tk.Label(entryframe, text="Evaluated "+str(len(sources))+" Source", bg=bgc, fg=fgc, font=(font, 8))
 textentry = tk.Entry(entryframe, bg="#a6b4ba")
 entrybutton = tk.Button(entryframe, text="Search", command=askai)
 
@@ -95,7 +97,6 @@ textboxlabel.place(x=30, rely=0.2)
 evaluationlabel.place(x=200, rely=0.5)
 textentry.place(x=175, rely=0.2, relwidth=0.6)
 entrybutton.place(relx=0.9, rely=0.2,)
-
 
 outputframe = tk.Frame(root, bg=bgc, bd=2, relief="groove", height=300)
 aioutput = tk.Text(outputframe, bg=bgc, fg=fgc, font=(font, 12), height=20)
