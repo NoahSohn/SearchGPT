@@ -7,15 +7,12 @@ void crawl(const std::string& file)
     std::string file_str = read_file("html/" + file);
     auto parsed_data = parse(file_str);
     std::string begin;
-    begin.append("<h1>\n");
+    begin.append("\n");
     begin.append(parsed_data.h1);
-    begin.push_back('\n');
-    begin.append("<h2>\n");
+    begin.append("\n");
     begin.append(parsed_data.h2);
-    begin.push_back('\n');
-    begin.append("<p>\n");
+    begin.append("\n");
     begin.append(parsed_data.p);
-    begin.push_back('\n');
     begin.append("<links>\n");
     for (auto link : parsed_data.links)
     {
