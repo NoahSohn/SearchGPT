@@ -51,7 +51,11 @@ def askai():
     print(file)
     print("here")
 
-    aisummary = r.askopenai("generate a long answer for this "+proooopmt+file)
+    aisummary = ""
+    if maxvalue < 0.001:
+        aisummary = r.askopenai("generate a long answer for this" + proooopmt);
+    else:
+        aisummary = r.askopenai("generate a long answer for this "+proooopmt+file)
 
     print("after ai summary")
 

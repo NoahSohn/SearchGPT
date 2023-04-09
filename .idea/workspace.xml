@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="08c8df72-9141-4e42-b378-933f0b923cc3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pythonscripts/venv/datasets/animal.html.crawltxt" beforeDir="false" afterPath="$PROJECT_DIR$/pythonscripts/venv/datasets/animal.html.crawltxt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pythonscripts/venv/datasets/apes.html.crawltxt" beforeDir="false" afterPath="$PROJECT_DIR$/pythonscripts/venv/datasets/apes.html.crawltxt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pythonscripts/venv/datasets/fish.html.crawltxt" beforeDir="false" afterPath="$PROJECT_DIR$/pythonscripts/venv/datasets/fish.html.crawltxt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pythonscripts/venv/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/pythonscripts/venv/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
