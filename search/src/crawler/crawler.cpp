@@ -13,6 +13,7 @@ void crawl(const std::string& file)
     begin.append(parsed_data.h2);
     begin.append("\n");
     begin.append(parsed_data.p);
+    std::transform(begin.begin(), begin.end(), begin.begin(), ::tolower);
     begin.append("<links>\n");
     for (auto link : parsed_data.links)
     {
