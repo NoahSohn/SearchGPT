@@ -9,18 +9,28 @@ root = tk.Tk()
 root.title("SearchGPT")
 root.configure(bg=bgc)
 
-with open("resources/database.txt", "r") as file:
+with open("idf.csv", "r") as file:
     resources = file.read()
-
+resourcesvalues = []
+resourceskeys = []
 print(resources)
 resources = resources.split(",")
-for x in range(0, len(resources)):
-    if resources[x-1] == "":
-        print(resources[x-1])
-        del resources[x-1]
+resourcespairs = []
+
 print(resources)
+for x in range(0, len(resources)):
+    if x % 2 == 0:
+        resourcesvalues.append(resources[x])
+    else:
+        resourceskeys.append(resources[x])
 
+print(resourcesvalues)
+print(resourceskeys)
 
+for i in range(0, len(resourcesvalues)-1):
+    resourcespairs.append((resourceskeys[i], resourcesvalues[i]))
+resources = dict(resourcespairs)
+print(resources)
 aisummary = ""
 font = "Calibri"
 sources = ["wikipedia", "thehub", "youtube", "qoura"]

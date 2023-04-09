@@ -17,12 +17,15 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Esohn/Documents/GitHub/LosAltosHacksVII/tkinterfortheFINALFUCKINGTIME/venv/main.py&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "last_opened_file_path": "C:/Users/Esohn/Documents/GitHub/LosAltosHacksVII/tkinterfortheFINALFUCKINGTIME/venv"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Esohn\Documents\GitHub\LosAltosHacksVII\tkinterfortheFINALFUCKINGTIME\venv" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Esohn\Documents\GitHub\LosAltosHacksVII\tkinterfortheFINALFUCKINGTIME\venv" />
     </key>
@@ -133,5 +136,8 @@
   </component>
   <component name="TaskManager">
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.csv" />
   </component>
 </project>
