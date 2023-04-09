@@ -51,7 +51,7 @@ def askai():
     print(file)
     print("here")
 
-    aisummary = r.askopenai("answer this proompt with the following context: "+proooopmt+file)
+    aisummary = r.askopenai("generate a long answer for this "+proooopmt+file)
 
     print("after ai summary")
 
@@ -93,8 +93,8 @@ textentry.place(x=175, rely=0.2, relwidth=0.6)
 entrybutton.place(relx=0.9, rely=0.2,)
 
 
-outputframe = tk.Frame(root, bg=bgc, bd=2, relief="groove", height=100)
-aioutput = tk.Text(outputframe, bg=bgc, fg=fgc, font=(font, 12), height=5)
+outputframe = tk.Frame(root, bg=bgc, bd=2, relief="groove", height=300)
+aioutput = tk.Text(outputframe, bg=bgc, fg=fgc, font=(font, 12), height=20)
 outputframe.pack(fill="both", padx=5, pady=10)
 
 aioutput.pack(fill=tk.BOTH, expand=True, padx=10, pady=10,)
