@@ -11,7 +11,7 @@ root.configure(bg=bgc)
 
 aisummary = ""
 font = "Calibri"
-sources = ["wikipedia", "thehub", "youtube", "qoura"]
+sources = ["wikipedia", "reddit", "youtube", "qoura"]
 
 s.init_datasets()
 airesults = ["","",""]
@@ -21,7 +21,7 @@ maxvalue = 0
 maxkey = ""
 
 def askai():
-    global aisummary,maxkey,maxvalue,searchquery,searchresults
+    global aisummary,maxkey,maxvalue,searchquery,searchresults,sources
     proooopmt = textentry.get()
     if proooopmt == "":
         return 0
@@ -33,14 +33,15 @@ def askai():
     print(searchresults)
 
     maxvalue = max(searchresults.values())
-    maxkey = max(searchresults,key=searchresults.get)
+    maxkey = max(searchresults, key=searchresults.get)
     print("searched webpage")
-    print(maxkey)
+    print(maxkey) 
     print(maxvalue)
 
     sources = searchresults.keys()
+    sources = str(sources).replace("dict_keys([", "")
+    sources = sources.replace("'", "")
     print(sources)
-
 
     with open("datasets/"+maxkey+".crawltxt","r") as f:
         file = f.read()
