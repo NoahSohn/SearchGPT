@@ -103,7 +103,7 @@ outputframe.pack(fill="both", padx=5, pady=10)
 
 aioutput.pack(fill=tk.BOTH, expand=True, padx=10, pady=10,)
 aioutput.configure(state=tk.NORMAL)
-aioutput.insert(tk.END, "Ai Summary: "+aisummary)
+aioutput.insert(tk.END, "Response: "+aisummary)
 aioutput.configure(state=tk.DISABLED)
 
 sourceoverviewframe = tk.Frame(root, bg=bgc, bd=2, relief="groove",)
